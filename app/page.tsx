@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Github, Linkedin, Mail, Terminal, Menu } from "lucide-react"
+import { ArrowRight, Github, Linkedin, Mail, Terminal, Menu, BookOpen } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 import { Button } from "@/components/ui/button"
@@ -26,6 +26,15 @@ export default function Home() {
             </Link>
             <Link href="#projects" className="text-sm font-medium hover:underline">
               Projects
+            </Link>
+            <Link 
+              href="https://nullhawk.github.io/deep-learning-blog/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm font-medium hover:underline flex items-center gap-1.5 text-primary hover:text-primary/80 transition-colors"
+            >
+              <BookOpen className="h-4 w-4" />
+              Blog
             </Link>
             <Link href="/skills" className="text-sm font-medium hover:underline">
               Skills
@@ -55,6 +64,15 @@ export default function Home() {
                   </Link>
                   <Link href="#projects" className="text-sm font-medium hover:underline">
                     Projects
+                  </Link>
+                  <Link 
+                    href="https://nullhawk.github.io/deep-learning-blog/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-sm font-medium hover:underline flex items-center gap-1.5 text-primary hover:text-primary/80 transition-colors"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    Blog
                   </Link>
                   <Link href="/skills" className="text-sm font-medium hover:underline">
                     Skills
@@ -94,6 +112,18 @@ export default function Home() {
                 <Link href="#contact">Contact Me</Link>
               </Button>
             </div>
+            <p className="font-mono text-xs text-muted-foreground">
+              Curious about my latest experiments?{" "}
+              <Link
+                href="https://nullhawk.github.io/deep-learning-blog/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4 hover:text-foreground"
+              >
+                Explore the Deep Learning Blog
+              </Link>
+              .
+            </p>
           </div>
         </section>
         <section id="about" className="container px-4 py-12 md:px-6 md:py-24">
@@ -188,14 +218,35 @@ export default function Home() {
             <p className="max-w-[700px] text-muted-foreground text-sm md:text-base">
               My professional journey in AI and software development.
             </p>
-
+            
+            {/* Experience Item 1 */}
+            <div className="relative pl-6 sm:pl-8 border-l-2">
+              <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full border-2 border-primary bg-background"></div>
+              <div className="font-mono text-xs sm:text-sm text-muted-foreground mb-1">OCT 2024 - PRESENT</div>
+              <h3 className="font-mono text-lg sm:text-xl font-bold">Co-Founder</h3>
+              <div className="text-muted-foreground text-sm mb-2">Hawks Lab</div>
+              <div className="rounded-lg border-2 p-3 sm:p-4 bg-muted/20 font-mono text-xs sm:text-sm">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-destructive"></div>
+                  <div className="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-yellow-500"></div>
+                  <div className="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-green-500"></div>
+                  <div className="text-xs text-muted-foreground ml-2">experience.log</div>
+                </div>
+                <ul className="space-y-2 list-disc pl-4">
+                  <li>
+                    Building AI Agents and Products that can solve real world problems.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
             <div className="mt-6 sm:mt-8 space-y-8 sm:space-y-12">
               {/* Experience Item 1 */}
               <div className="relative pl-6 sm:pl-8 border-l-2">
                 <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full border-2 border-primary bg-background"></div>
-                <div className="font-mono text-xs sm:text-sm text-muted-foreground mb-1">OCT 2024 - PRESENT</div>
-                <h3 className="font-mono text-lg sm:text-xl font-bold">Co-Founder</h3>
-                <div className="text-muted-foreground text-sm mb-2">Hawks Lab</div>
+                <div className="font-mono text-xs sm:text-sm text-muted-foreground mb-1">June 2025 - OCT 2025</div>
+                <h3 className="font-mono text-lg sm:text-xl font-bold">AI Engineering Intern</h3>
+                <div className="text-muted-foreground text-sm mb-2">Vendantu</div>
                 <div className="rounded-lg border-2 p-3 sm:p-4 bg-muted/20 font-mono text-xs sm:text-sm">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-destructive"></div>
@@ -204,12 +255,14 @@ export default function Home() {
                     <div className="text-xs text-muted-foreground ml-2">experience.log</div>
                   </div>
                   <ul className="space-y-2 list-disc pl-4">
-                    <li>
-                      Building AI Agents and Products that can solve real world problems.
-                    </li>
+                    <li>Built platform for Evaluation of Subjective answer sheets from scratch that can be used be used by teachers/schools for evaluating subjective examinations.</li>
+                    <li>Main Features: OCR, Rubric Generation, Evaluation, Answer sheet Annotations, Detailed Report about mistakes and feedback, Content Suggestion.</li>
+                    <li>Benchmarked several OCR models and LLMs on Dataset of 100000+ answer sheets</li>
+                    <li>Finetuned custom OCR models on in-house dataset.</li>
                   </ul>
                 </div>
               </div>
+
               {/* Experience Item 1 */}
               <div className="relative pl-6 sm:pl-8 border-l-2">
                 <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full border-2 border-primary bg-background"></div>
@@ -299,6 +352,7 @@ export default function Home() {
             <ProjectGrid />
           </div>
         </section>
+      
         <section id="contact" className="container px-4 py-8 md:py-12 lg:py-24">
           <div className="grid gap-6 md:grid-cols-2 md:gap-12">
             <div className="flex flex-col gap-4">
@@ -338,45 +392,7 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div className="rounded-lg border p-4 sm:p-6 relative mt-4 md:mt-0">
-              <div className="absolute -top-3 left-4 bg-background px-2 text-xs font-mono">MESSAGE.form</div>
-              <form className="grid gap-4">
-                <div className="grid gap-2">
-                  <label htmlFor="name" className="text-xs sm:text-sm font-medium font-mono">
-                    Name
-                  </label>
-                  <input
-                    id="name"
-                    className="rounded-md border bg-background px-3 py-2 text-xs sm:text-sm font-mono"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <label htmlFor="email" className="text-xs sm:text-sm font-medium font-mono">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    className="rounded-md border bg-background px-3 py-2 text-xs sm:text-sm font-mono"
-                    placeholder="Your email"
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <label htmlFor="message" className="text-xs sm:text-sm font-medium font-mono">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    className="min-h-[100px] sm:min-h-[120px] rounded-md border bg-background px-3 py-2 text-xs sm:text-sm font-mono"
-                    placeholder="Your message"
-                  />
-                </div>
-                <Button type="submit" className="font-mono text-xs sm:text-sm">
-                  Send Message
-                </Button>
-              </form>
-            </div>
+            
           </div>
         </section>
       </main>
