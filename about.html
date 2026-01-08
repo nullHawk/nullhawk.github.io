@@ -37,6 +37,31 @@
                 })
                 .catch(err => console.error("Last.fm API error:", err));
         });
+
+        const rssUrl =
+        "https://www.goodreads.com/review/list_rss/197520852?shelf=currently-reading";
+
+        const api =
+        "https://api.rss2json.com/v1/api.json?rss_url=" +
+        encodeURIComponent(rssUrl);
+
+        fetch(api)
+        .then(res => res.json())
+        .then(data => {
+            if (!data.items || data.items.length === 0) {
+            document.getElementById("currently-reading").innerText =
+                "Not currently reading anything.";
+            return;
+            }
+
+            const book = data.items[0];
+
+            document.getElementById("currently-reading").innerHTML = `<a href="${book.link}" target="_blank">${book.title}</a>`;
+        })
+        .catch(() => {
+            document.getElementById("currently-reading").innerText =
+            "Could not load reading status.";
+        });
     </script>
 </head>
 <body>
@@ -69,7 +94,7 @@
                 <ul>
                     <li><b>Learning: </b>Transformers and Mech Interp</li>
                     <li><b>Subjects: </b>NLP, DevOPS, HLD</li>
-                    <li><b>Reading: </b>Deep Learning by Ian Goodfellow </li>
+                    <li><b>Reading: </b><span id="currently-reading">Deep Learning by Ian Goodfellow </span></li>
                     <li><b>Watching:</b> Blue Period</li>
                     <li><b>Playing: </b>Tomb Raider 2013</li>
                     <li><b>Listening: </b><span id="spotify-status">Loading...</span></li>
