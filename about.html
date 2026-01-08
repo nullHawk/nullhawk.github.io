@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <style>
+        pre {
+            font-family: Consolas, monospace;
+            font-size: 3px;
+            line-height: 1;
+            white-space: pre;
+            overflow-x: auto;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('ascii-art.txt')
+                .then(r => r.text())
+                .then(text => document.getElementById('ascii-art').textContent = text);
+
+            const LASTFM_USER = "nullhawk";
+            const LASTFM_API_KEY = "87e852e0b5545f288501df22c5a92904";
+            
+            fetch(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${LASTFM_API_KEY}&format=json&limit=1`)
+                .then(res => res.json())
+                .then(data => {
+                    const track = data.recenttracks.track[0];
+                    if (track) {
+                        const song = track.name;
+                        const artist = track.artist["#text"];
+                        const nowPlaying = track["@attr"]?.nowplaying === "true";
+                        
+                        document.getElementById('spotify-status').textContent = 
+                            nowPlaying ? `🎵 ${song} — ${artist}` : `🎵 ${song} — ${artist} (last played)`;
+                    }
+                })
+                .catch(err => console.error("Last.fm API error:", err));
+        });
+
+        const rssUrl =
+        "https://www.goodreads.com/review/list_rss/197520852?shelf=currently-reading";
+
+        const api =
+        "https://api.rss2json.com/v1/api.json?rss_url=" +
+        encodeURIComponent(rssUrl);
+
+        fetch(api)
+        .then(res => res.json())
+        .then(data => {
+            if (!data.items || data.items.length === 0) {
+            document.getElementById("currently-reading").innerText =
+                "Not currently reading anything.";
+            return;
+            }
+
+            const book = data.items[0];
+
+            document.getElementById("currently-reading").innerHTML = `<a href="${book.link}" target="_blank">${book.title}</a>`;
+        })
+        .catch(() => {
+            document.getElementById("currently-reading").innerText =
+            "Could not load reading status.";
+        });
+    </script>
+</head>
+<body>
+    <table align="center" style="padding-top: 100px;">
+        <tr>
+            <td>
+                <pre id="ascii-art" style="font-family: monospace;"></pre>
+            </td>
+            <td style="vertical-align: bottom; padding-left: 20px;">
+                hi.<br>
+                i am suryansh! prefinal year student at BITS Pilani <br>
+                i’m interested in learning systems, mathematics,<br>physics and comp. neuroscience, astrophysics... maybe, much more ;) <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Experience:</b>
+                <ul>
+                    <li>AI Engineering Intern at <a href="https://www.vedantu.com/">Vedantu</a> (Jun 2025 - Sep 2025)</li>
+                    <li>Software Engineering Intern at <a href="https://www.interviewbit.com/">InterviewBit</a> (Dec 2024 - Feb 2024)</li>
+                    <li>Machine Learning Intern at <a href="https://www.iitb.ac.in/">IIT Bombay</a> (Aug 2024 - Oct 2024)</li>
+                    <li>Software Engineering Intern at <a href="https://bhashini.gov.in/">Bhashini</a> (Nov 2023 - Feb 2024)</li>
+                </ul>
+
+                <b>Hobbies:</b>
+                    Photography, Reading, Football, Anime, Atheletics, Martial Arts<br>
+                <br>
+                
+                <b>Currently:</b>
+                <ul>
+                    <li><b>Learning: </b>Transformers and Mech Interp</li>
+                    <li><b>Subjects: </b>NLP, DevOPS, HLD</li>
+                    <li><b>Reading: </b><span id="currently-reading">Deep Learning by Ian Goodfellow </span></li>
+                    <li><b>Watching:</b> Blue Period</li>
+                    <li><b>Playing: </b>Tomb Raider 2013</li>
+                    <li><b>Listening: </b><span id="spotify-status">Loading...</span></li>
+                </ul>
+            </td>
+            <td style="vertical-align: top; padding-left: 20px;">
+                <b>Education:</b>
+                <ul>
+                    <li>B.Sc(Hons) Computer Science, BITS Pilani (2023 - 2027)</li>
+                </ul>
+
+                <b>Research Interests:</b>
+                NLP, ASR, Mechanistic Interpretability, Alignment<br>
+                <br>
+                <b>Interesting Facts:</b>
+                <ul>
+                    <li>Started Coding in 3rd Grade with `BASIC` language</li>
+                    <li>Represented Dhanbad in Intra State Judo Competition</li>
+                    <li>Computing Olympiad Regionalist (2016-2018)</li>
+                </ul>
+
+                <b>Volunteering:</b>
+                <ul>
+                    <li>Core Member of ReInforce(AI/ML Club) - SST (2025 - Present)</li>
+                    <li><b>Open Source Contributions:</b> Music Brainz Picard, Google Blockly</li>
+                    <li>Core Member of Open Source Club, SST (2023 - 2024)</li>
+                </ul>
+                
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>

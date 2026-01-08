@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nullHawk</title>
+
+  <style>
+    :root {
+      --text: #111;
+      --muted: #666;
+      --link: #3939c2;
+      --max-width: 600px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    .body-holder {
+      max-width: var(--max-width);
+      text-align: center;
+      padding: 24px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 400;
+      margin: 0 0 8px 0;
+    }
+
+    .tagline {
+      font-size: 16px;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .time {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    nav {
+      font-size: 15px;
+      margin-bottom: 28px;
+    }
+
+    nav a {
+      color: var(--link);
+      text-decoration: underline;
+      margin: 0 8px;
+    }
+
+    nav a:hover {
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const formatter = new Intl.DateTimeFormat("en-IN", {
+        timeZone: "Asia/Kolkata",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      });
+
+      function updateTime() {
+        const node = document.getElementById("time");
+        if (!node) return;
+        node.textContent = formatter.format(new Date());
+      }
+
+      updateTime();
+      setInterval(updateTime, 1000);
+    });
+  </script>
+</head>
+
+<body>
+  <div class="body-holder">
+
+    <h1>Suryansh Shakya</h1>
+    <p class="tagline">CS student. ML, systems, and research.</p>
+
+    <div class="time">
+      TIME IN BANGALORE, INDIA – <span id="time">00:00:00</span> IST
+    </div>
+
+    <img src="landscape.jpg" alt="Landscape" />
+
+    <nav>
+        <p>
+            <a href="about.html">about</a>
+            <a href="https://nullhawk.github.io/deep-learning-blog/">blogs</a>
+            <a href="projects.html">projects</a>
+            <a href="https://drive.google.com/file/d/14PVOQ7QJzuzBWfkCo-2VQya-it8DvWvD/view">resume</a>
+            <a href="contact.html">contact</a>
+        </p>
+    </nav>
+  </div>
+</body>
+</html>
